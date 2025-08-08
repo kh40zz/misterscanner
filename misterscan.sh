@@ -13,12 +13,17 @@ KTQSE="\e[0;36m\033[1m"
 KGRAY="\e[0;37m\033[1m"
 
 
+declare -a ports=$(seq 1 36535)
+
+ip=$2
+
 
 # Make Ctrl + C
 cancel(){
 
-  echo -ne "\n\nGoodBye...\n"
-  tput cnorm ;exit 1
+  echo -ne "$KRED\n\nGoodBye...\n$KNMAL"
+  tput cnorm; exit 1
+  exit 10 
 }
 
 # Capture Ctrl + C
@@ -47,31 +52,55 @@ logo(){
     ||| \\       __/_||  __||__                 
 ----|||-/------\`-._/||-o--o---o---~~~~~'
                                                                $KGREN  misterscanner.sh                                                    
-                                                               $KRED    Author: Kh40z 
-  $KNMAL"
+                                                               $KRED    Author: Kh40z$KNMAL\n"
 }
 
 # Help's Menu 
 menu(){
-  echo -ne "$KGREN\nmisterscanner.sh:\n\n$KBLUE Description:    A simple TCP port scanner\n\n\t$KPRPL RUN: $0 <IP_ADDR>\n\n$KNMAL"
+  logo
+  echo -ne "\n$KGREN" 
+  echo -ne "misterscanner.sh:\n\n$KBLUE" 
+  echo -ne "Description:\tA simple TCP port scanner\n\n\t$KPRPL usage:\n\t\t$0 --ip <IP_ADDR>\n$KNMAL"
+  tput cnorm
 }
 
-# Make Scan
-scan(){
- 
-  # Declare port range
-  declare -a ports=( $(seq 1 36535) )
+# Make all the TCP ports
+scan(){ 
+  
+  clear
+  # shows the logo
+  logo
 
-  # loop of any port of the port's
-  for port in ports; do
-    # scan the port
-    (exec 3<> /dev/tcp/$1/$2 2>/dev/null);
+  # makes the scan
+  
+  for port in $ports; do 
+      
+    (exec echo '' > /dev/tcp/$ip/$port) 2>/dev/null 
+      
+     
+    # Check the port's status
+    if [ $? -eq 0 ]; then 
+          
+      # shows the port
+      echo -ne  "\n$KGREN[!]$KYLLW $ip:$KBLUE\t$port/OPEN$KNMAL\n";
+        
+      
+    fi
+     
   done
 
+  tput cnorm
+  
 }
 
-# flow of the program
-logo
-menu
+# Parameter validation
+if [ $2 ]; then
+  tput civis
+  scan &
+else
+  menu
+fi
+
+wait
 
 
