@@ -10,7 +10,9 @@ A simple TCP scanner in bash language.
 Install misterscanner with bash and git
 
 ```bash
-git clone https://github.com/kh40zz/misterscanner/ ;  cd misterscanner chmod +x misterscanner.sh
+git clone https://github.com/kh40zz/misterscanner/
+cd misterscanner
+chmod +x misterscanner.sh
 ./misterscanner.sh
 ```
 
