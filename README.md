@@ -41,6 +41,8 @@ Description:	A simple TCP port scanner
 
 
 # 🚨 DISCLAIMER 🚨
+----
 
 **The tool provided is for educational and offensive security porposes only. Use it own your risk. I am not responsable for any damage, loss or consecuences resulting from the use of this software. cyber crime has serious verdicts by the laws of many countries.**
+
 ---
