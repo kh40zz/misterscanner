@@ -60,7 +60,7 @@ menu(){
   logo
   echo -ne "\n$KGREN" 
   echo -ne "misterscanner.sh:\n\n$KBLUE" 
-  echo -ne "Description:\tA simple TCP port scanner\n\n\t$KPRPL usage:\n\t\t$0 --ip <IP_ADDR>\n$KNMAL"
+  echo -ne "Description:\tA simple TCP port scanner\n\n\t$KPRPL Usage:\n\t\t$0 --ip <IP_ADDR>\n$KNMAL"
   tput cnorm
 }
 
